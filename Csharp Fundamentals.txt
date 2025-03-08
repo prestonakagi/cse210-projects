@@ -1,0 +1,236 @@
+Csharp Fundamentals
+
+C#							Python
+
+Use semicolon to end 
+a (one-line or multiple line) statement 
+or line or in if or while condition.
+
+When a variable is declared, 
+first need specify data type (dtype).
+bool = Boolean
+
+dtype x = 5;
+
+use camelCase for variable name.
+
+
+Output/print
+
+Console.WriteLine("Hi");				print("Hi")
+	prints with new line at end.
+
+Console.Write("Hi");
+	prints with no new line at end.
+
+
+Input
+
+Console.ReadLine("Fav color? ");			input("Fav color? ")
+
+
+Curly braces define blocks.
+**For if statement, (condition) {indented}
+
+if (x > y)						if x > y:
+{								print("greater")
+	Console.WriteLine("greater");
+}
+
+
+If use variable inside a string, 
+start with $ same way as f string.
+
+string greet = "Hello"					greet = "Hello"
+Console.WriteLine($"I said {greet}.");			print(f"I said {greet}.")
+
+
+If Statements
+
+**
+If put one block of code inside another, 
+indent as follows:
+
+if (x > y)
+{
+	if (x > z)
+	{
+		Console.WriteLine("greater than both");
+	}
+}
+
+
+else if							elif
+else							else
+
+if (x > y)						if x > y:
+{								print("greater than y")
+	Console.Write("greater than y");		elif x > z:
+}								print("greater than z")
+else if (x > z)						else:
+{								print("less than both")
+	Console.Write("greater than z");
+}
+else
+{
+	Console.Write("less than both");
+}
+
+
+Operators
+
+==, !=, >=, <=						each same in Python
+
+&&							and
+||							or
+!							not
+
+if (name == "Peter" || name == "James")
+
+if (first == "Brigham" && last == "Young")
+
+if (!(name == "Peter" || name == "James")
+
+
+Converting data Types
+
+If want to convert a variable's value to 
+a different data type,
+dtype.Parse(variableName)
+
+Console.Write("What is your favorite number? ");
+string userInput = Console.ReadLine();
+int number = int.Parse(userInput);
+
+Can also use .ToString() function
+
+int number = 42;
+string textVersion = number.ToString();
+
+
+Loops
+
+string response = "yes";				response = "yes"
+while (response == "yes")				while response == "yes":
+{								response = input("Do...")
+	Console.Write("Do you want to continue? ");
+	response = Console.ReadLine();
+}
+
+Do-While Loop
+
+Body of loop runs once first,
+before the check is made for first time.
+
+string response;
+
+do
+{
+	Console.Write("Do you want to continue? ");
+	response = Console.ReadLine();
+} while (response == "yes");
+
+For loop
+
+Like Python "for x in range".
+1st initializes value, 2nd condition to check,
+	3rd increment step (++ increment by 1).
+
+for (int i = 0; i < 10; i++)
+{
+	Console.WriteLine(i);
+}
+
+for (int i = 2; i <= 20; i = i + 2)
+{
+	Console.WriteLine(i);
+}
+
+Foreach loop
+
+Like regular loop in Python; need iterator variable type defined.
+
+foreach (string color in colors)
+{
+	Console.WriteLine(color);
+}
+
+
+Random Numbers
+
+Create an instance of Random class, then use.
+
+Random randomGenerator = new Random();
+int number = randomGenerator.Next(1, 11);
+
+
+Lists
+
+Declare List then <dtype> and new variable with new keyword
+
+List<int> numbers = new List<int>();
+List<string> words = new List<string>();
+
+The extra parentheses at end, use when create a new object.
+
+Any file that uses Lists must refer to that library at top of file:
+
+using System.Collections.Generic;
+
+List (along with set and dictionary) is a class (or custom dtype).
+
+Adding items to list
+
+.Add() method
+
+List<string> words = new List<string>();		words = []
+words.Add("phone");					words.append("phone")
+
+list size  with Count property
+
+Console.WriteLine(words.Count);				print(len(words))
+
+Iterating thru list
+by foreach loop or for loop (see above)
+
+
+Functions
+
+Each function must define its return dtype,
+and nothing (called void) is possible, and
+each parameter must have dtype.
+Use TitleCase.  General structure:
+
+returnType FunctionName(dtype parameter1, dtype parameter2)
+{
+	function_body
+}
+
+When function does not have parameters or return dtype,
+use void.
+
+void DisplayMessage()
+{
+	Console.WriteLine("Hello world!");
+}
+
+void DisplayPersonalMessage(string userName)
+{
+	Console.WriteLine($"Hello {userName}");
+}
+
+
+int AddNumbers (int first, int second)			def add_numbers(first, second):
+{								sum = first + second
+	int sum = first + second;				return sum
+	return sum;
+}
+
+
+To define "regular" standalone function, 
+not a method in a Class, use static keyword.
+
+static void DisplayMessage()
+{
+	Console.WriteLine("Hello world!");
+}
