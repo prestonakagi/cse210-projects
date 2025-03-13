@@ -1,0 +1,49 @@
+Class Diagram's format
+
+Class: 
+
+Attributes:
+* _attributeVariable1 : dtype
+
+
+Behaviors (methods):
+* CapitalCamelCase(parameter : dtype) : dtype of return
+
+
+For Journal Project
+
+classes and their responsibilities = Journal: Stores a list of journal entries. Entry: represents a single journal entry. 
+				PromptGenerator: supplies random prompts whenever needed.
+
+Saving to a file and loading from a file for behaviors of Classes!
+
+Class: Journal
+
+Attributes:
+* _entries : List<Entry>
+
+Behaviors:
+* AddEntry(newEntry : Entry) : void
+* DisplayAll(): void
+* SaveToFile(file : string) : void
+* LoadFromFile(file : string) : void
+
+
+Class: Entry
+
+Attributes:
+* _date : string
+* _promptText : string
+* _entryText : string
+
+Behaviors:
+* Display() : void
+
+
+Class: PromptGenerator
+
+Attributes:
+* _prompts : List<string>
+
+Behaviors:
+* GetRandomPrompt() : string
