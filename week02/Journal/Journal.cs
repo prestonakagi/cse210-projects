@@ -4,7 +4,7 @@ public class Journal
 
     public void AddEntry(Entry newEntry)
     {
-
+        _entries.Add(newEntry);
     }
 
     public void DisplayAll()
