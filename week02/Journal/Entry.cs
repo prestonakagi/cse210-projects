@@ -7,6 +7,6 @@ public class Entry
     public void Display()
     {
         // the \n works for new line character in C# like Python!
-        Console.WriteLine($"{_date}: {_promptText}\n{_entryText}");
+        Console.WriteLine($"Date: {_date} - Prompt: {_promptText}\n{_entryText}");
     }
 }
