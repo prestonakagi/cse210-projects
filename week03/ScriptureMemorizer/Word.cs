@@ -4,11 +4,6 @@ public class Word
     private bool _isHidden;
 
     // constructors
-    public Word()
-    {
-        _text = "This is default for the word's text.";
-    }
-
     public Word(string text)
     {
         // text of the word.
