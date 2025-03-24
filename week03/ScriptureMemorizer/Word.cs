@@ -1,7 +1,7 @@
 public class Word
 {
     private string _text;
-    private bool _isHidden;
+    private bool _isHidden = false;
 
     // constructors
     public Word(string text)
@@ -13,21 +13,32 @@ public class Word
     // methods
     public void Hide()
     {
-
+        int letterCount = _text.Count();
+        string allUnderscores = new string('_', letterCount);
+        _text = allUnderscores;
+        _isHidden = true;
     }
 
-    public void Show()
-    {
+    // Core requirements can select already hidden words, so why need Show()?? 
+    // public void Show()
+    // {
 
-    }
+    // }
 
     public bool IsHidden()
     {
-        return false; // just to stub
+        if (_text.Contains("_") && (_isHidden == true))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public string DisplayText()
     {
-        return "stub"; // just to stub
+       return _text;
     }
 }
