@@ -37,7 +37,7 @@ public class Word
         }
     }
 
-    public string DisplayText()
+    public string getWordText()
     {
        return _text;
     }

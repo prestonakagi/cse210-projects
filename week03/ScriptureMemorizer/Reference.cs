@@ -3,7 +3,7 @@ public class Reference
     private string _book;
     private int _chapter;
     private int _verse;
-    private int _endVerse;
+    private int _endVerse = 0;
 
     // Constructors
     // One verse
@@ -24,13 +24,15 @@ public class Reference
     }
 
     // Methods
-    public string DisplayTextSingle()
+    public string DisplayReferenceText()
     {
-        return $"{_book} {_chapter}:{_verse}"; // for stub
-    }
-
-        public string DisplayTextMultiple()
-    {
-        return $"{_book} {_chapter}:{_verse} - {_endVerse}"; // for stub
+        if (_endVerse == 0)
+        {
+            return $"{_book} {_chapter}:{_verse}";
+        }
+        else
+        {
+            return $"{_book} {_chapter}:{_verse} - {_endVerse}";   
+        }
     }
 }

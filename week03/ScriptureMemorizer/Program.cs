@@ -8,9 +8,30 @@ class Program
         Scripture scripture = new Scripture(reference, "For where your treasure is, there will your heart be also.");
         scripture.MakeWordList();
 
-        string sixUnder = new string('_', 6);
-        Console.WriteLine($"Hello World! This is the ScriptureMemorizer Project. and 6 underscores: {sixUnder}");
-
+        Console.WriteLine(scripture.DisplayText());
+        
         Random random = new Random();
+
+        Console.WriteLine(scripture.IsCompletelyHidden());
+        bool isCompletelyHidden = scripture.IsCompletelyHidden();
+        string decision = "";
+
+
+        while (decision != "quit" || isCompletelyHidden == false)
+        {
+            Console.WriteLine("Press enter to continue or type 'quit' to finish:");
+            Console.Write("");
+            decision = Console.ReadLine();
+
+            Console.Clear();
+
+            scripture.HideRandomWords(3);
+
+            Console.WriteLine(scripture.DisplayText());
+
+            Console.WriteLine(scripture.IsCompletelyHidden());
+            isCompletelyHidden = scripture.IsCompletelyHidden();
+            // isCompletelyHidden = true;
+        }
     }
 }
