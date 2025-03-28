@@ -12,7 +12,7 @@ class Program
         
         Random random = new Random();
 
-        Console.WriteLine(scripture.IsCompletelyHidden());
+        // Console.WriteLine(scripture.IsCompletelyHidden());
         bool isCompletelyHidden = scripture.IsCompletelyHidden();
         string decision = "";
 
@@ -29,7 +29,7 @@ class Program
 
             Console.WriteLine(scripture.DisplayText());
 
-            Console.WriteLine(scripture.IsCompletelyHidden());
+            // Console.WriteLine(scripture.IsCompletelyHidden());
             isCompletelyHidden = scripture.IsCompletelyHidden();
             // isCompletelyHidden = true;
         }
