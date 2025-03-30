@@ -25,6 +25,6 @@ public class Product
 
     public double TotalCost()
     {
-        return 1.01;
+        return _price * _quantity;
     }
 }

@@ -17,11 +17,18 @@ public class Address
     // methods
     public bool LiveInUSA()
     {
-        return true; // stub true if in USA.
+        if (_country.ToLower() == "usa")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public string FullAddress()
     {
-        return "hi"; // stub
+        return $"{_street}\n{_city}, {_state}\n{_country}";
     }
 }
