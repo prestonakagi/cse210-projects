@@ -1,6 +1,6 @@
 public class CheckListGoal : Goal
 {
-    private int _amountCompleted;
+    private int _amountCompleted = 0;
     private int _target;
     private int _bonus;
 
@@ -17,12 +17,19 @@ public class CheckListGoal : Goal
 
     public override bool IsComplete()
     {
-        return false; // stub
+        if (_amountCompleted == _target)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public override string GetDetailsString()
     {
-        return ""; // stub
+        return $"The goal {GetName()} is {GetDescription()}. Completed {_amountCompleted}/{_target} times.";
     }
 
     public override string GetStringRepresentation()

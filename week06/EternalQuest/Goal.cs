@@ -11,11 +11,26 @@ public abstract class Goal
         _points = points;
     }
 
+    public string GetName()
+    {
+        return _shortName;
+    }
+
+    public string GetDescription()
+    {
+        return _description;
+    }
+
+        public string GetPoints()
+    {
+        return _points;
+    }
+
     public abstract void RecordEvent(); // each child class's RecordEvent() will be called in GoalManager('s RecordEvent() method. Maybe rename that method?)
     public abstract bool IsComplete();
     public virtual string GetDetailsString()
     {
-        return "details"; //stub
+        return $"The goal {_shortName} is {_description}.";
     }
 
     public abstract string GetStringRepresentation();
