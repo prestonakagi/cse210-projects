@@ -3,8 +3,10 @@ public class GoalManager
     // Start() is for menu options at end of each loop.
     // Rename this class's RecordEvent() to ManageRecordEvent()
 
-    private List<Goal> _goals;
-    private int _score; // total points = score
+    private List<Goal> _goals = new List<Goal>(){};
+    private int _score = 0; // total points = score
+    private string _checkBox = "[ ]";
+
 
     public void Start()
     {
@@ -28,12 +30,17 @@ public class GoalManager
 
     public void ListGoalDetails()
     {
-        // show if checkbox is complete too.
+        // show if checkbox is complete and, for checklistgoal, progress like 2/3. Write these before description.
 
         Console.WriteLine("The details of each of your goals:");
         foreach (Goal goal in _goals)
         {
-            Console.WriteLine(goal.GetDescription());
+            // if goal is SimpleGoal or goal is EternalGoal
+            Console.WriteLine($"{_checkBox} {goal.GetDescription()}");
+
+            // if goal is CheckListGoal
+            // Console.WriteLine($"{_checkBox} {goal.GetAmountCompleted()}/{goal.GetTarget()} {goal.GetDescription()}");
+
         }
     }
 
@@ -84,7 +91,40 @@ public class GoalManager
 
     public void ManageRecordEvent()
     {
-
+        // records event thru the Goal.RecordEvent(), and will add points to (total) score.
+        Console.Write("What is the name of the goal you have completed or worked toward? ");
+        string goalToRecord = Console.ReadLine();
+        foreach (Goal goal in _goals)
+        {
+            if (goalToRecord.ToLower() == goal.GetName().ToLower())
+            {
+                if (goal is SimpleGoal || goal is EternalGoal)
+                {
+                    goal.RecordEvent();
+                    string pointsString = goal.GetPoints();
+                    int pointsInt = int.Parse(pointsString);
+                    _score += pointsInt;
+                }
+                else if (goal is CheckListGoal)
+                {
+                    if (goal.IsComplete() == false)
+                    {
+                        goal.RecordEvent();
+                        string pointsString = goal.GetPoints();
+                        int pointsInt = int.Parse(pointsString);
+                        _score += pointsInt; 
+                    }
+                    else
+                    {
+                        goal.RecordEvent();
+                        string pointsString = goal.GetPoints();
+                        int pointsInt = int.Parse(pointsString);
+                        _score += pointsInt;
+                        // _score += goal.GetBonus(); //has error of checking the Goal class for the .GetBonus() method.
+                    }
+                }
+            }
+        }
     }
 
     public void SaveGoals()

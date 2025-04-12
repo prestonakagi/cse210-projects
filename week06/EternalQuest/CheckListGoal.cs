@@ -10,9 +10,32 @@ public class CheckListGoal : Goal
         _bonus = bonus;
     }
 
+    public int GetAmountCompleted()
+    {
+        return _amountCompleted;
+    }
+
+        public int GetTarget()
+    {
+        return _target;
+    }
+
+    public int GetBonus()
+    {
+        return _bonus;
+    }
+
     public override void RecordEvent()
     {
-        
+        // need check IsComplete()
+        if (IsComplete() == false)
+        {
+            Console.WriteLine($"Congrats on doing one instance of the {GetName()} goal! You've earned {GetPoints()} points!");
+        }
+        else
+        {
+            Console.WriteLine($"Congrats on completing the {GetName()} goal! You've earned {GetPoints()} points and {GetBonus()} bonus points!");
+        }
     }
 
     public override bool IsComplete()
