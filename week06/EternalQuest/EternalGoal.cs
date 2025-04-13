@@ -16,6 +16,7 @@ public class EternalGoal : Goal
 
     public override string GetStringRepresentation()
     {
+        // store info in a string variable (not an attribute, but a variable)
         return ""; // stub
     }
 }

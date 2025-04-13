@@ -26,6 +26,20 @@ public class SimpleGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        return ""; // stub
+        // store info in a string variable (not an attribute, but a variable)
+        // Look to contructor for info need to save:
+        // Class's name~goal's name~goal's description~goal's points
+        // $"ClassName~{GetName()}~{GetDescription()}~{GetPoints()}"
+        // check IsComplete()
+        if (IsComplete() == false)
+        {
+            string toWrite = $"SimpleGoal~[ ]~{GetName()}~{GetDescription()}~{GetPoints()}";
+            return toWrite;
+        }
+        else
+        {
+            string toWrite = $"SimpleGoal~[X]~{GetName()}~{GetDescription()}~{GetPoints()}";
+            return toWrite; 
+        }
     }
 }
