@@ -11,29 +11,78 @@ public class GoalManager
     public void Start()
     {
         // menu function
-        // static string ChooseMenuOption()
-        // {
-        //     Console.WriteLine("Menu Options:");
-        //     Console.WriteLine(" 1. Start breathing activity");
-        //     Console.WriteLine(" 2. Start reflecting activity");
-        //     Console.WriteLine(" 3. Start listing activity");
-        //     Console.WriteLine(" 4. Quit");
-        //     Console.Write("Please type the option number from the menu. ");
-        //     string option = Console.ReadLine();
-        //     return option;
-        // }
+        string option = Menu(); // need this to not have infinite loops
+        
+        while (option != "8")
+        {
+            if (option == "1")
+            {
+                DisplayPlayerInfo();
+                // Start(); // doesn't work. Keeps repeating loop when 8 is entered.
+                Console.WriteLine("");
+                option = Menu(); // need this to not have infinite loops
+            }
+            else if (option == "2")
+            {
+                ListGoalNames();
+                // Start(); // doesn't work. Keeps repeating loop when 8 is entered.
+                Console.WriteLine("");
+                option = Menu();
+            }
+            else if (option == "3")
+            {
+                ListGoalDetails();
+                // Start(); // doesn't work. Keeps repeating loop when 8 is entered.
+                Console.WriteLine("");
+                option = Menu();
+            }
+            else if (option == "4")
+            {
+                CreateGoal();
+                // Start(); // doesn't work. Keeps repeating loop when 8 is entered.
+                Console.WriteLine("");
+                option = Menu();
+            }
+            else if (option == "5")
+            {
+                ManageRecordEvent();
+                // Start(); // doesn't work. Keeps repeating loop when 8 is entered.
+                Console.WriteLine("");
+                option = Menu();
+            }
+            else if (option == "6")
+            {
+                SaveGoals();
+                // Start(); // doesn't work. Keeps repeating loop when 8 is entered.
+                Console.WriteLine("");
+                option = Menu();
+            }
+            else if (option == "7")
+            {
+                LoadGoals();
+                // Start(); // doesn't work. Keeps repeating loop when 8 is entered.
+                Console.WriteLine("");
+                option = Menu();
+            }
+        }
+    }
 
-        // menu function
-        // Console.WriteLine("Please select one of the following choices");
-        // Console.WriteLine("(if adding to an existing file, first load, then write, then save):");
-        // Console.WriteLine("1. Write");
-        // Console.WriteLine("2. Display");
-        // Console.WriteLine("3. Save");
-        // Console.WriteLine("4. Load");
-        // Console.WriteLine("5. Quit");
-        // Console.Write("What would you like to do? Please type the number of the option. ");
-        // string option = Console.ReadLine();
-        // return option;
+    public string Menu()
+    {
+        // menu display and option selection
+        Console.WriteLine("Please select one of the following choices");
+        Console.WriteLine("(if adding to an existing file, first load, then write, then save):");
+        Console.WriteLine("1. Current Score");
+        Console.WriteLine("2. Display Goal Names");
+        Console.WriteLine("3. Display Goal Details");
+        Console.WriteLine("4. Create a Goal");
+        Console.WriteLine("5. Record a Goal Event");
+        Console.WriteLine("6. Save Current Goals");
+        Console.WriteLine("7. Load Goals From File");
+        Console.WriteLine("8. Quit");
+        Console.Write("Please type the option number from the menu. ");
+        string choice = Console.ReadLine();
+        return choice;  
     }
 
     public void DisplayPlayerInfo()
@@ -94,7 +143,7 @@ public class GoalManager
 
             SimpleGoal sGoal = new SimpleGoal(userName, userDescription, userPoints);
             _goals.Add(sGoal);
-            Console.WriteLine("You have finished creating your goal!\n");
+            Console.WriteLine("You have finished creating your goal!");
         }
         else if (type.ToLower() == "eternalgoal" || type.ToLower() == "eternal goal")
         {
@@ -103,7 +152,7 @@ public class GoalManager
 
             EternalGoal eGoal = new EternalGoal(userName, userDescription, userPoints);
             _goals.Add(eGoal);
-            Console.WriteLine("You have finished creating your goal!\n");         
+            Console.WriteLine("You have finished creating your goal!");         
             
         }
         else if (type.ToLower() == "checklistgoal" || type.ToLower() == "check list goal" || type.ToLower() =="checklist goal")
@@ -119,7 +168,7 @@ public class GoalManager
 
             CheckListGoal cGoal = new CheckListGoal(userName, userDescription, userPoints, userTarget, userBonus);
             _goals.Add(cGoal);
-            Console.WriteLine("You have finished creating your goal!\n");         
+            Console.WriteLine("You have finished creating your goal!");         
         }        
     }
 
@@ -179,14 +228,6 @@ public class GoalManager
                 objFile.WriteLine(_goals[i].GetStringRepresentation()); // uses ~ as delimiter.
             }
         }
-        
-        // Save all entries of currentJournal to a text file, delimited by ~
-        // else if (userOption == "3")
-        // {
-        //     currentJournal.SaveToFile();
-        //     userOption = ChooseMenuOption();
-        // }
-
     }
 
     public void LoadGoals()
@@ -257,11 +298,5 @@ public class GoalManager
                 }
             }
         }
-
-        // else if (userOption == "4")
-        // {
-        //     currentJournal.LoadFromFile();
-        //     userOption = ChooseMenuOption();
-        // }
     }
 }
