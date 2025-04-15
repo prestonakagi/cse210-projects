@@ -8,6 +8,11 @@ public class GoalManager
     private string _checkBox = "[ ]";
 
 
+    public void SetScore(int score)
+    {
+        _score = score;
+    }
+
     public void Start()
     {
         // menu function
@@ -110,12 +115,12 @@ public class GoalManager
             // if goal is SimpleGoal or goal is EternalGoal
             if (goal.IsComplete() == false)
             {
-                _checkBox = "[X]";
-                Console.WriteLine($"{_checkBox} {goal.GetDescription()}");
+                Console.WriteLine($"{_checkBox} {goal.GetDetailsString()}");
             }
             else
             {
-                Console.WriteLine($"{_checkBox} {goal.GetDescription()}");
+                _checkBox = "[X]";
+                Console.WriteLine($"{_checkBox} {goal.GetDetailsString()}");
             }
             // if goal is CheckListGoal
             // Console.WriteLine($"{_checkBox} {goal.GetAmountCompleted()}/{goal.GetTarget()} {goal.GetDescription()}");
@@ -162,11 +167,8 @@ public class GoalManager
             int userTarget = int.Parse(userTargetString);
             Console.Write("When you do 1 instance of this goal, how many points will you be awarded? ");
             string userPoints = Console.ReadLine();
-            Console.Write("When you fully complete this goal, how many bonus points will you be awarded? ");
-            string userBonusString = Console.ReadLine(); // convert to int
-            int userBonus = int.Parse(userBonusString);
 
-            CheckListGoal cGoal = new CheckListGoal(userName, userDescription, userPoints, userTarget, userBonus);
+            CheckListGoal cGoal = new CheckListGoal(userName, userDescription, userPoints, userTarget);
             _goals.Add(cGoal);
             Console.WriteLine("You have finished creating your goal!");         
         }        
@@ -203,7 +205,7 @@ public class GoalManager
                         string pointsString = goal.GetPoints();
                         int pointsInt = int.Parse(pointsString);
                         _score += pointsInt;
-                        // _score += goal.GetBonus(); //has error of checking the Goal class for the .GetBonus() method.
+                        _score += goal.RetrieveBonus(); // had error of checking the Goal class for the .GetBonus() method.
                     }
                 }
             }
@@ -227,6 +229,9 @@ public class GoalManager
             {
                 objFile.WriteLine(_goals[i].GetStringRepresentation()); // uses ~ as delimiter.
             }
+            
+            // Save current score at end of file.
+            objFile.WriteLine($"Score~{_score}");
         }
     }
 
@@ -239,12 +244,13 @@ public class GoalManager
 
         // parts index variables
         int indexType = 0;
-        // int indexCheckBox = 1;
+        int indexCheckBox = 1;
         int indexName = 2;
         int indexDescription = 3;
         int indexPoints = 4;
-        int indexTarget = 5;
-        int indexBonus = 6;
+        int indexAmountCompleted = 5;
+        int indexTarget = 6;
+        // int indexBonus = 7;
 
         _goals.Clear();
 
@@ -272,6 +278,14 @@ public class GoalManager
                     string goalPoints = lists[indexPoints];
 
                     SimpleGoal sGoal = new SimpleGoal(goalName, goalDescription, goalPoints);
+                    if (lists[indexCheckBox] == "[X]")
+                    {
+                        sGoal.SetIsComplete(true);
+                    }
+                    else if (lists[indexCheckBox] == "[ ]")
+                    {
+                        sGoal.SetIsComplete(false);
+                    }
                     _goals.Add(sGoal);
                 }
                 else if (type.ToLower() == "eternalgoal" || type.ToLower() == "eternal goal")
@@ -291,10 +305,15 @@ public class GoalManager
                     string goalDescription = lists[indexDescription];
                     string goalPoints = lists[indexPoints];
                     int goalTarget = int.Parse(lists[indexTarget]);
-                    int goalBonus = int.Parse(lists[indexBonus]);
 
-                    CheckListGoal cGoal = new CheckListGoal(goalName, goalDescription, goalPoints, goalTarget, goalBonus);
+                    CheckListGoal cGoal = new CheckListGoal(goalName, goalDescription, goalPoints, goalTarget);
+                    cGoal.SetAmountCompleted(int.Parse(lists[indexAmountCompleted]));
                     _goals.Add(cGoal);         
+                }
+                else if (type.ToLower() == "score")
+                {
+                    int loadedScore = int.Parse(lists[1]);
+                    SetScore(loadedScore);
                 }
             }
         }

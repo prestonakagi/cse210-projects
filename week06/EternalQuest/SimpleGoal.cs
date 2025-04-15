@@ -12,6 +12,10 @@ public class SimpleGoal : Goal
         Console.WriteLine($"Congrats on completing the {GetName()} goal! You've earned {GetPoints()} points!");
     }
 
+    public void SetIsComplete(bool isComplete)
+    {
+        _isComplete = isComplete;
+    }
     public override bool IsComplete()
     {
         if (_isComplete)
@@ -31,7 +35,8 @@ public class SimpleGoal : Goal
         // Class's name~goal's name~goal's description~goal's points
         // $"ClassName~{GetName()}~{GetDescription()}~{GetPoints()}"
         // check IsComplete()
-        if (IsComplete() == false)
+        bool check = IsComplete(); 
+        if (check == false)
         {
             string toWrite = $"SimpleGoal~[ ]~{GetName()}~{GetDescription()}~{GetPoints()}";
             return toWrite;

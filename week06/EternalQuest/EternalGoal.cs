@@ -23,12 +23,12 @@ public class EternalGoal : Goal
         // check IsComplete()
         if (IsComplete() == false)
         {
-            string toWrite = $"SimpleGoal~[ ]~{GetName()}~{GetDescription()}~{GetPoints()}";
+            string toWrite = $"EternalGoal~[ ]~{GetName()}~{GetDescription()}~{GetPoints()}";
             return toWrite;
         }
         else
         {
-            string toWrite = $"SimpleGoal~[X]~{GetName()}~{GetDescription()}~{GetPoints()}";
+            string toWrite = $"EternalGoal~[X]~{GetName()}~{GetDescription()}~{GetPoints()}";
             return toWrite; 
         }
     }

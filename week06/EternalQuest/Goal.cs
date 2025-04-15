@@ -21,9 +21,15 @@ public abstract class Goal
         return _description;
     }
 
-        public string GetPoints()
+     public string GetPoints()
     {
         return _points;
+    }
+
+    public int RetrieveBonus()
+    {
+        CheckListGoal rewardBonus = new CheckListGoal("testToGetBonus", "try get bonus to add when ManageRecordEvent", "5", 3);
+        return rewardBonus.GetBonus();
     }
 
     public abstract void RecordEvent(); // each child class's RecordEvent() will be called in GoalManager('s RecordEvent() method. Maybe rename that method?)

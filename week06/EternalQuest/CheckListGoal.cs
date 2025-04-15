@@ -2,18 +2,27 @@ public class CheckListGoal : Goal
 {
     private int _amountCompleted = 0;
     private int _target;
-    private int _bonus;
+    private int _bonus = 40;
 
-    public CheckListGoal(string name, string description, string points, int target, int bonus) : base(name, description, points)
+    public CheckListGoal(string name, string description, string points, int target) : base(name, description, points)
     {
         _target = target;
-        _bonus = bonus;
     }
 
     public int GetAmountCompleted()
     {
         return _amountCompleted;
     }
+
+    public void SetAmountCompleted(int amountCompleted)
+    {
+        _amountCompleted = amountCompleted;
+    }
+
+    //     public void LoadCompleted(int completed)
+    // {
+    //     _amountCompleted = completed;
+    // }
 
         public int GetTarget()
     {
@@ -27,8 +36,10 @@ public class CheckListGoal : Goal
 
     public override void RecordEvent()
     {
+        _amountCompleted += 1;
         // need check IsComplete()
-        if (IsComplete() == false)
+        bool check = IsComplete(); 
+        if (check == false)
         {
             Console.WriteLine($"Congrats on doing one instance of the {GetName()} goal! You've earned {GetPoints()} points!");
         }
@@ -64,12 +75,12 @@ public class CheckListGoal : Goal
         // check IsComplete()
         if (IsComplete() == false)
         {
-            string toWrite = $"SimpleGoal~[ ]~{GetName()}~{GetDescription()}~{GetPoints()}~{GetTarget()}~{GetBonus}";
+            string toWrite = $"CheckListGoal~[ ]~{GetName()}~{GetDescription()}~{GetPoints()}~{GetAmountCompleted()}~{GetTarget()}~{GetBonus()}";
             return toWrite;
         }
         else
         {
-            string toWrite = $"SimpleGoal~[X]~{GetName()}~{GetDescription()}~{GetPoints()}~{GetTarget()}~{GetBonus}";
+            string toWrite = $"CheckListGoal~[X]~{GetName()}~{GetDescription()}~{GetPoints()}~{GetAmountCompleted()}~{GetTarget()}~{GetBonus()}";
             return toWrite; 
         }
     }
