@@ -1,6 +1,6 @@
 public class Cycling : Activity
 {
-    private double _speed;
+    private double _speed; // mph
 
     public Cycling(string date, double time, double speed) : base(date, time)
     {
@@ -9,7 +9,7 @@ public class Cycling : Activity
 
     public override double CalculateDistance()
     {
-        return 3.3; //stub
+        return _speed * GetTime() / 60; // miles
     }
     public override double CalculateSpeed()
     {
@@ -17,10 +17,10 @@ public class Cycling : Activity
     }
     public override double CalculatePace()
     {
-        return 3.3; //stub
+        return GetTime() / CalculateDistance(); //min per mile
     }
     public override string GetSummary()
     {
-        return "stub";
+        return $"{GetDate()} Cycling ({GetTime()} min): Distance {CalculateDistance()} miles, Speed: {CalculateSpeed()} mph, Pace: {CalculatePace()} min per mile.";
     }
 }

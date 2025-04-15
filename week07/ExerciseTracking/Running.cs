@@ -13,14 +13,14 @@ public class Running : Activity
     }
     public override double CalculateSpeed()
     {
-        return 3.3; //stub
+        return _distance / GetTime() * 60; // mph
     }
     public override double CalculatePace()
     {
-        return 3.3; //stub
+        return GetTime() / _distance; // min per mile
     }
     public override string GetSummary()
     {
-        return "stub";
+        return $"{GetDate()} Running ({GetTime()} min): Distance {CalculateDistance()} miles, Speed: {CalculateSpeed()} mph, Pace: {CalculatePace()} min per mile.";
     }
 }

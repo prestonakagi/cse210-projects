@@ -9,18 +9,18 @@ public class Swimming : Activity
 
     public override double CalculateDistance()
     {
-        return 3.3; //stub
+        return _laps * 50 / 1000 * 0.62; // miles
     }
     public override double CalculateSpeed()
     {
-        return 3.3; //stub
+        return CalculateDistance() / GetTime() * 60; // mph
     }
     public override double CalculatePace()
     {
-        return 3.3; //stub
+        return GetTime() / CalculateDistance(); // min per mile
     }
     public override string GetSummary()
     {
-        return "stub";
+        return $"{GetDate()} Swimming ({GetTime()} min): Distance {CalculateDistance()} miles, Speed: {CalculateSpeed()} mph, Pace: {CalculatePace()} min per mile.";
     }
 }
